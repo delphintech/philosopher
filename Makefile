@@ -7,7 +7,8 @@ SRCS += main.c \
 	utils/ft_atoi.c \
 	utils/utils.c \
 	utils/philo_struct.c \
-	utils/fork_struct.c
+	utils/fork_struct.c \
+	utils/life.c
 
 OBJS = $(SRCS:.c=.o)
 DEPS = $(SRCS:.c=.d)

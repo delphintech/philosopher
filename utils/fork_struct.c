@@ -6,7 +6,7 @@
 /*   By: dabouab <dabouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 15:08:29 by dabouab           #+#    #+#             */
-/*   Updated: 2024/08/07 15:38:37 by dabouab          ###   ########.fr       */
+/*   Updated: 2024/08/07 16:27:37 by dabouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,20 @@ void	fork_add_back(t_fork **forks, t_fork *new)
 	last->next = new;
 	new->prev = last;
 	new->next = first;
+}
+
+t_fork	*get_fork(t_fork **forks, int num)
+{
+	t_fork	*temp;
+
+	temp = *forks;
+	while (temp)
+	{
+		if (temp->num == num)
+			retrun (temp);
+		temp = temp->next;
+	}
+	return (NULL);
 }
 
 void	clear_forks(t_fork **forks)

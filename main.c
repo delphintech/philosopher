@@ -6,7 +6,7 @@
 /*   By: dabouab <dabouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:35:57 by dabouab           #+#    #+#             */
-/*   Updated: 2024/08/07 16:15:40 by dabouab          ###   ########.fr       */
+/*   Updated: 2024/08/07 17:10:01 by dabouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 int	check_args(int ac, char **av, t_args *args)
 {
 	if (ac < 5)
-		return (clear("Not enough arguments"), EXIT_FAILURE);
+		return (clear("Not enough arguments", NULL, NULL), EXIT_FAILURE);
 	if (ac > 6)
-		return (clear("Too many arguments"), EXIT_FAILURE);
+		return (clear("Too many arguments", NULL, NULL), EXIT_FAILURE);
 	args->philo_num = ft_atoi(av[1]);
 	args->die_time = ft_atoi(av[2]);
 	args->eat_time = ft_atoi(av[3]);
@@ -32,6 +32,7 @@ int	check_args(int ac, char **av, t_args *args)
 int	initialize(t_args *args, t_philo **philos, t_fork **forks)
 {
 	int 						i;
+	t_philo					*philo;
 	struct timeval	timestamp;
 
 	gettimeofday(&timestamp, NULL);
@@ -40,8 +41,10 @@ int	initialize(t_args *args, t_philo **philos, t_fork **forks)
 	i = 1;
 	while (i <= args->philo_num)
 	{
-		philo_add_back(philos, new_philo(i, timestamp.tv_usec));
+		philo = new_philo(i, timestamp.tv_usec);
+		philo_add_back(philos, new_philo);
 		fork_add_back(philos, new_fork(i));
+		change_state(new_philo, 't');
 		i++;
 	}
 	return (EXIT_SUCCESS);

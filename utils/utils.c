@@ -6,7 +6,7 @@
 /*   By: dabouab <dabouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 14:48:44 by dabouab           #+#    #+#             */
-/*   Updated: 2024/08/07 16:08:22 by dabouab          ###   ########.fr       */
+/*   Updated: 2024/08/07 17:08:37 by dabouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,18 @@ void	clear(char *msg, t_philo **philos, t_fork **forks)
 		printf("%s\n", msg);
 }
 
-void	print_state(t_philo *philo)
+void	change_state(t_philo *philo, char state)
 {
 	struct timeval	timestamp;
 
 	gettimeofday(&timestamp, NULL);
-	if (philo->state == 't')
+	philo->state = state;
+	if (state == 't')
 		printf(PURPLE "%ld %d is thinking\n" RESET, timestamp.tv_usec, philo->num);
-	if (philo->state == 'e')
+	if (state == 'e')
 		printf(GREEN "%ld %d is eating\n" RESET, timestamp.tv_usec, philo->num);
-	if (philo->state == 's')
+	if (state == 's')
 		printf(BLUE "%ld %d is sleeping\n" RESET, timestamp.tv_usec, philo->num);
-	if (philo->state == 'd')
+	if (state == 'd')
 		printf(RED "%ld %d has died\n" RESET, timestamp.tv_usec, philo->num);
 }

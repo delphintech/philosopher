@@ -6,7 +6,7 @@
 /*   By: dabouab <dabouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 10:36:22 by dabouab           #+#    #+#             */
-/*   Updated: 2024/08/07 15:55:22 by dabouab          ###   ########.fr       */
+/*   Updated: 2024/08/07 17:08:59 by dabouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct s_fork
 
 // utils
 	void	clear(char *msg, t_philo **philos, t_fork **forks);
+	void	change_state(t_philo *philo, char state);
 
 // philo_struct
 t_philo		*new_philo(int num, int last_meal);
@@ -75,6 +76,7 @@ void			clear_philos(t_philo **philos);
 // fork_struct
 t_philo	*new_fork(int num);
 void	fork_add_back(t_fork **forks, t_fork *new);
+t_fork	*get_fork(t_fork **forks, int num);
 void	clear_forks(t_fork **forks);
 
 #endif
