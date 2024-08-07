@@ -1,9 +1,13 @@
 CC = cc
-CFLAGS += -Werror -Wall -Wextra -MMD -pthread -fsanitize=thread 
+CFLAGS += -Werror -Wall -Wextra -MMD -pthread -fsanitize=thread
 
 NAME = philo
 
-SRCS += main.c
+SRCS += main.c \
+	utils/ft_atoi.c \
+	utils/utils.c \
+	utils/philo_struct.c \
+	utils/fork_struct.c
 
 OBJS = $(SRCS:.c=.o)
 DEPS = $(SRCS:.c=.d)
@@ -20,7 +24,7 @@ clean	:
 	rm -f $(OBJS) $(DEPS)
 
 fclean	:	clean
-		rm -f $(NAME) 
+		rm -f $(NAME)
 
 re	:	fclean all
 
@@ -40,7 +44,7 @@ run : $(NAME)
 debug :  $(SRCS)             ## Permet de debuger le code avec lldb
 	$(CC) ${DBGFLAGS} -o $(NAME) $(SRCS)
 	lldb ./$(NAME) $(ARG)
-	
+
 val :                       ## Lance le check valgrind
 	$(CC) ${DBGFLAGS} -o $(NAME) $(SRCS)
 	valgrind --tool=memcheck --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME) $(ARG)
